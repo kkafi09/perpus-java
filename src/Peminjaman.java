@@ -19,8 +19,8 @@ public class Peminjaman {
         this.idSiswa.add(2);
         this.idBuku.add(2);
         this.banyak.add(2);
-
     }
+
     public void prosesPeminjaman(Siswa siswa, Peminjaman peminjaman, Buku buku) {
         Scanner sc = new Scanner(System.in);
         int idSiswa = 0;
@@ -64,7 +64,7 @@ public class Peminjaman {
         System.out.println("Total Belanja : " + total);
         siswa.editStatus(idSiswa, false);
         if(!siswa.getStatus(idSiswa)){
-            System.err.println("tidak boleh meminjam buku sampai buku dikemabalikan");
+            System.err.println("tidak boleh meminjam buku sampai buku di kembalikan");
         }
     }
 
