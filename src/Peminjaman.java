@@ -24,7 +24,7 @@ public class Peminjaman {
     public void prosesPeminjaman(Siswa siswa, Peminjaman peminjaman, Buku buku) {
         Scanner sc = new Scanner(System.in);
         int idSiswa = 0;
-        System.out.println("SELAMAT DATANG DI PERPUSTAKAAN KITA");
+        System.out.println("SELAMAT DATANG DI PERPUSTAKAAN SMK TELKOM MALANG");
         do{
             System.out.print("\nMasukkan ID Siswa : ");
             idSiswa = sc.nextInt();
@@ -43,7 +43,7 @@ public class Peminjaman {
             temp = sc.nextInt();
             if(temp != 99){
                 idBuku.add(temp);
-                System.out.print(buku.getNamaBuku(idBuku.get(i)) + " sebanyak : ");
+                System.out.print(buku.getNamaBuku(idBuku.get(i)).replaceAll(" ", "") + " sebanyak : ");
                 banyak.add(sc.nextInt());
                 i++;
             }
@@ -64,7 +64,8 @@ public class Peminjaman {
         System.out.println("Total Belanja : " + total);
         siswa.editStatus(idSiswa, false);
         if(!siswa.getStatus(idSiswa)){
-            System.err.println("tidak boleh meminjam buku sampai buku di kembalikan");
+            System.err.println("Siswa tidak boleh meminjam buku lagi");
+            System.err.println("Jika buku telah di kembalikan, siswa dapat meminjam buku!");
         }
     }
 

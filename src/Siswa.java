@@ -15,7 +15,7 @@ public class Siswa {
         this.namaSiswa.add("Kafi #2");
         this.alamat.add("Amerika  ");
         this.telepon.add("0857179279000");
-        this.status.add(false);
+        this.status.add(true);
     }
 
     public boolean getStatus(int id) {
