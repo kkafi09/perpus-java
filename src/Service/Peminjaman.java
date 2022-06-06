@@ -1,5 +1,9 @@
+package Service;
+
+import Repository.Buku;
+import Repository.Siswa;
+import Util.InputUtil;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Peminjaman {
 
@@ -22,73 +26,73 @@ public class Peminjaman {
     }
 
     public void prosesPeminjaman(Siswa siswa, Peminjaman peminjaman, Buku buku) {
-        Scanner sc = new Scanner(System.in);
-        int idSiswa = 0;
+        int tempIdSiswa = 0;
         System.out.println("SELAMAT DATANG DI PERPUSTAKAAN SMK TELKOM MALANG");
-        do{
-            System.out.print("\nMasukkan ID Siswa : ");
-            idSiswa = sc.nextInt();
+        do {
+            tempIdSiswa = InputUtil.inputInt("Masukkan id siswa") - 1;
 
-            if(!siswa.getStatus(idSiswa)) System.err.println("Siswa tidak bisa meminjam buku, karena telah meminjam buku");
-        } while (!siswa.getStatus(idSiswa));
+            if (!siswa.getStatus(tempIdSiswa))
+                System.err.println("Siswa tidak bisa meminjam buku, karena telah meminjam buku");
 
-        System.out.println("Selamat datang " + siswa.getNamaSiswa(idSiswa));
-        ArrayList<Integer> idBuku = new ArrayList<>();
-        ArrayList<Integer> banyak = new ArrayList<>();
+        } while (!siswa.getStatus(tempIdSiswa));
+
+        System.out.println("Selamat datang " + siswa.getNama(tempIdSiswa));
         int i = 0;
         int temp = 0;
+        ArrayList<Integer> idBuku = new ArrayList<>();
+        ArrayList<Integer> banyak = new ArrayList<>();
 
-        do{
-            System.out.print("Masukkan kode Buku : ");
-            temp = sc.nextInt();
-            if(temp != 99){
+        do {
+            temp = InputUtil.inputInt("Masukkan kode Buku") - 1;
+
+            if (temp != 98) {
                 idBuku.add(temp);
-                System.out.print(buku.getNamaBuku(idBuku.get(i)).replaceAll(" ", "") + " sebanyak : ");
-                banyak.add(sc.nextInt());
+                banyak.add(InputUtil.inputInt(buku.getNamaBuku(idBuku.get(i)).replaceAll(" ", "") + " sebanyak"));
                 i++;
             }
-        } while(temp != 99);
+        } while (temp != 98);
 
-        System.out.println("Peminjaman Buku oleh " + siswa.getNamaSiswa(idSiswa) + " sebagai berikut : ");
+        System.out.println("Peminjaman buku oleh " + siswa.getNama(tempIdSiswa) + " sebagai berikut : ");
         System.out.println("Nama buku \t\tIdBuku \tHarga \tJumlah \t");
 
         int total = 0;
         int x = idBuku.size();
-        for(int j= 0;j < x; j++){
+        for (int j = 0; j < x; j++) {
             int sum = banyak.get(j) * buku.getHarga(idBuku.get(j));
             total += sum;
             System.out.println(buku.getNamaBuku(idBuku.get(j)) + "\t\t" + idBuku.get(j) + "\t" + buku.getHarga(idBuku.get(j)) + "\t" + sum + "\t" + banyak.get(j));
-            peminjaman.setPeminjaman(buku, idSiswa, idBuku.get(j), banyak.get(j));
+            peminjaman.setPeminjaman(buku, tempIdSiswa, idBuku.get(j), banyak.get(j));
         }
 
         System.out.println("Total Belanja : " + total);
-        siswa.editStatus(idSiswa, false);
-        if(!siswa.getStatus(idSiswa)){
+        if (!siswa.getStatus(tempIdSiswa)) {
             System.err.println("Siswa tidak boleh meminjam buku lagi");
             System.err.println("Jika buku telah di kembalikan, siswa dapat meminjam buku!");
         }
+        siswa.editStatus(tempIdSiswa, false);
+
     }
 
-    public void setPeminjaman(Buku buku, int idSiswa, int idBuku, int banyak){
+    public void setPeminjaman(Buku buku, int idSiswa, int idBuku, int banyak) {
         this.idSiswa.add(idSiswa);
         this.idBuku.add(idBuku);
         this.banyak.add(banyak);
         buku.editStok(idBuku, buku.getStok(idBuku) - banyak);
     }
 
-    public int getIdSiswa(int id){
+    public int getIdSiswa(int id) {
         return this.idSiswa.get(id);
     }
 
-    public int getIdBuku(int id){
+    public int getIdBuku(int id) {
         return this.idBuku.get(id);
     }
 
-    public int getBanyak(int id){
+    public int getBanyak(int id) {
         return this.banyak.get(id);
     }
 
-    public int getTotalId(){
+    public int getTotalId() {
         return this.idSiswa.size();
     }
 }

@@ -1,19 +1,21 @@
+package Repository;
+
 import java.util.ArrayList;
 
-public class Siswa {
-    private ArrayList<String> namaSiswa = new ArrayList<>();
+public class Siswa implements User {
+    private ArrayList<String> nama = new ArrayList<>();
     private ArrayList<String> alamat = new ArrayList<>();
     private ArrayList<String> telepon = new ArrayList<>();
     private ArrayList<Boolean> status = new ArrayList<>();
 
     public Siswa() {
-        this.namaSiswa.add("Kafi #1");
+        this.nama.add("Kafi #1");
         this.alamat.add("Indonesia");
         this.telepon.add("085717927900");
         this.status.add(true);
 
-        this.namaSiswa.add("Kafi #2");
-        this.alamat.add("Amerika  ");
+        this.nama.add("Kafi #2");
+        this.alamat.add("Amerika");
         this.telepon.add("0857179279000");
         this.status.add(true);
     }
@@ -31,11 +33,11 @@ public class Siswa {
     }
 
     public int getTotalSiswa() {
-        return this.namaSiswa.size();
+        return this.nama.size();
     }
 
-    public void setNamaSiswa(String nama) {
-        this.namaSiswa.add(nama);
+    public void setNama(String nama) {
+        this.nama.add(nama);
     }
 
     public void setAlamat(String alamat) {
@@ -46,8 +48,8 @@ public class Siswa {
         this.telepon.add(telepon);
     }
 
-    public String getNamaSiswa(int id) {
-        return this.namaSiswa.get(id);
+    public String getNama(int id) {
+        return this.nama.get(id);
     }
 
     public String getAlamat(int id) {

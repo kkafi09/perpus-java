@@ -1,3 +1,5 @@
+package Repository;
+
 import java.util.ArrayList;
 
 public class Buku {
@@ -11,7 +13,7 @@ public class Buku {
         this.stok.add(1);
         this.harga.add(66000);
 
-        this.namaBuku.add("Azzamine    ");
+        this.namaBuku.add("Azzamine");
         this.stok.add(1);
         this.harga.add(76000);
 
@@ -19,11 +21,11 @@ public class Buku {
         this.stok.add(1);
         this.harga.add(56000);
 
-        this.namaBuku.add("Si Doel     ");
+        this.namaBuku.add("Si Doel");
         this.stok.add(1);
         this.harga.add(76000);
 
-        this.namaBuku.add("5 AM rule   ");
+        this.namaBuku.add("5 AM rule");
         this.stok.add(1);
         this.harga.add(76000);
     }

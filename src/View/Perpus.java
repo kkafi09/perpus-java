@@ -1,13 +1,16 @@
-public class Perpustakaan {
-    public static void main(String[] args) {
-        Siswa siswa = new Siswa();
-        Buku buku = new Buku();
-        Peminjaman peminjaman = new Peminjaman();
-        Laporan laporan = new Laporan();
+package View;
 
+import Repository.Buku;
+import Repository.Siswa;
+import Service.Peminjaman;
+
+public class Perpus {
+
+    public static void start(Laporan laporan, Buku buku, Siswa siswa, Peminjaman peminjaman) {
         laporan.laporan(buku);
         laporan.laporan(siswa);
         laporan.laporan(peminjaman, buku);
+
         peminjaman.prosesPeminjaman(siswa, peminjaman, buku);
 
         laporan.laporan(buku);
