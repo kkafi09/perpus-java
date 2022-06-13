@@ -8,11 +8,13 @@ public class InputUtil {
 
     public static String inputStr(String info) {
         System.out.print(info + " : ");
+        scanner.skip("\\R?");
         return scanner.nextLine();
     }
 
     public static int inputInt(String info){
         System.out.print(info + " : ");
+        scanner.skip("\\R?");
         return scanner.nextInt();
     }
 }

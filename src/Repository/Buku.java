@@ -1,33 +1,58 @@
 package Repository;
 
+import Util.FormatString;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Buku {
+public class Buku implements Serializable {
 
     private ArrayList<String> namaBuku = new ArrayList<>();
     private ArrayList<Integer> stok = new ArrayList<>();
     private ArrayList<Integer> harga = new ArrayList<>();
 
-    public Buku() {
-        this.namaBuku.add("Tentang Kamu");
-        this.stok.add(1);
-        this.harga.add(66000);
+    private Integer id, price;
+    private String title, author;
 
-        this.namaBuku.add("Azzamine");
-        this.stok.add(1);
-        this.harga.add(76000);
+//    public Buku() {
+//        this.namaBuku.add("Tentang Kamu");
+//        this.stok.add(1);
+//        this.harga.add(66000);
+//
+//        this.namaBuku.add("Azzamine");
+//        this.stok.add(1);
+//        this.harga.add(76000);
+//
+//        this.namaBuku.add("Atomic habit");
+//        this.stok.add(1);
+//        this.harga.add(56000);
+//
+//        this.namaBuku.add("Si Doel");
+//        this.stok.add(1);
+//        this.harga.add(76000);
+//
+//        this.namaBuku.add("5 AM rule");
+//        this.stok.add(1);
+//        this.harga.add(76000);
+//    }
 
-        this.namaBuku.add("Atomic habit");
-        this.stok.add(1);
-        this.harga.add(56000);
+    public Buku(Integer id, String title, String author, Integer price) {
+        this.id = id;
+        this.price = price;
+        this.title = title;
+        this.author = author;
+    }
 
-        this.namaBuku.add("Si Doel");
-        this.stok.add(1);
-        this.harga.add(76000);
+    public Buku(){
+        id = 0;
+        title = null;
+        price = null;
+        author = null;
+    }
 
-        this.namaBuku.add("5 AM rule");
-        this.stok.add(1);
-        this.harga.add(76000);
+    @Override
+    public String toString() {
+        return (id + 1) + ". " + FormatString.formatStr(title, 12) + "\t" + author + "\t" + price + "\n";
     }
 
     public int getTotalBuku() {

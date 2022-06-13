@@ -3,6 +3,7 @@ package Service;
 import Repository.Buku;
 import Repository.Siswa;
 import Util.InputUtil;
+
 import java.util.ArrayList;
 
 public class Peminjaman {
@@ -27,7 +28,7 @@ public class Peminjaman {
 
     public void prosesPeminjaman(Siswa siswa, Peminjaman peminjaman, Buku buku) {
         int tempIdSiswa = 0;
-        System.out.println("SELAMAT DATANG DI PERPUSTAKAAN SMK TELKOM MALANG");
+        System.out.println("\nSELAMAT DATANG DI PERPUSTAKAAN SMK TELKOM MALANG");
         do {
             tempIdSiswa = InputUtil.inputInt("Masukkan id siswa") - 1;
 

@@ -2,11 +2,32 @@ package Repository;
 
 import java.util.ArrayList;
 
-public class Siswa implements User {
+public class Siswa {
     private ArrayList<String> nama = new ArrayList<>();
     private ArrayList<String> alamat = new ArrayList<>();
     private ArrayList<String> telepon = new ArrayList<>();
     private ArrayList<Boolean> status = new ArrayList<>();
+
+    private String id, name, address, phoneNumber, studentStatus;
+
+    public Siswa(String id, String name, String address, String phoneNumber, String studentStatus) {
+        this.id = id;
+        this.name = name;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
+        this.studentStatus = studentStatus;
+    }
+
+    @Override
+    public String toString() {
+        return "Siswa{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", address='" + address + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", studentStatus='" + studentStatus + '\'' +
+                '}';
+    }
 
     public Siswa() {
         this.nama.add("Kafi #1");
