@@ -1,31 +1,50 @@
 package Service;
 
 import Repository.Buku;
+import Repository.Siswa;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 public class LibraryService implements Serializable {
-    private List<Buku> collection;
+    private List<Buku> listBuku;
+    private List<Siswa> listSiswa;
 
     public LibraryService() {
-        collection = new ArrayList<>();
+        listBuku = new ArrayList<>();
+        listSiswa = new ArrayList<>();
     }
 
     public void addBook(Buku buku) {
-        collection.add(buku);
+        listBuku.add(buku);
     }
 
-    public void deleteBook(int id){
-        collection.remove(id);
+    public void deleteBook(int id) {
+        listBuku.remove(id);
     }
 
-    public String toString() {
+    public String showBook() {
+        return new LibraryService().toString(listBuku);
+    }
+
+    public void addStudent(Siswa siswa){
+        listSiswa.add(siswa);
+    }
+
+    public void deleteSiswa(int id){
+        listSiswa.remove(id);
+    }
+
+    public String showSiswa(){
+        return new LibraryService().toString(listSiswa);
+    }
+
+    public <T> String toString(List<T> arrayList) {
         StringBuilder total = new StringBuilder();
 
-        for (Buku buku : collection) {
-            total.append(buku.toString());
+        for (T data : arrayList) {
+            total.append(data.toString());
         }
 
         return total.toString();

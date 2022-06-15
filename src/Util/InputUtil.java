@@ -17,4 +17,11 @@ public class InputUtil {
         scanner.skip("\\R?");
         return scanner.nextInt();
     }
+
+    public static boolean inputBool(String info){
+        System.out.print(info + " : ");
+        scanner.skip("\\R?");
+        return scanner.nextBoolean();
+    }
+
 }

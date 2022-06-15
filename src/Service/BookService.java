@@ -7,19 +7,21 @@ import java.io.*;
 
 public class BookService {
     LibraryService libraryService = new LibraryService();
-    String databuku = "databuku.ser";
+    String database = "databuku.txt";
 
     public void loadDataBuku() {
-        File file = new File(databuku);
+        File file = new File(database);
 
         if (file.exists()) {
-            try (FileInputStream inputStream = new FileInputStream(file); ObjectInputStream objectInputStream = new ObjectInputStream(inputStream)) {
+            try (ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(database))) {
                 libraryService = (LibraryService) objectInputStream.readObject();
             } catch (IOException | ClassNotFoundException exception) {
-                exception.printStackTrace();
+                System.err.println("File gagal di load\n");
+
             }
         } else{
-            System.out.println("File Not found");
+            System.out.println("File Not found, Tambahkan buku terlebih dahulu");
+            add();
         }
     }
 
@@ -35,7 +37,7 @@ public class BookService {
     }
 
     public void save() {
-        try (FileOutputStream outputStream = new FileOutputStream(databuku); ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream)) {
+        try (ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream(database))) {
             objectOutputStream.writeObject(libraryService);
         } catch (IOException exception) {
             exception.printStackTrace();
@@ -44,14 +46,15 @@ public class BookService {
 
     public void show() {
         loadDataBuku();
-        System.out.println(libraryService.toString());
+        System.out.println("Id \tNama Buku \t\tAuthor \t\t\tHarga");
+        System.out.println(libraryService.showBook());
     }
 
     public void delete() {
         loadDataBuku();
         show();
 
-        int id = InputUtil.inputInt("Masukkan id buku yang akan dihapus");
+        int id = InputUtil.inputInt("Masukkan no buku yang akan dihapus") - 1;
         libraryService.deleteBook(id);
 
         save();
